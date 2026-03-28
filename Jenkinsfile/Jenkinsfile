@@ -1,0 +1,24 @@
+pipeline {
+    agent {
+        label 'agent'
+    }
+  
+    stages { 
+        stage("checkout scm") {
+            steps {
+                git url:'https://github.com/PriyeshPandey07/weather-react.git', credentialsId: 'git', branch: 'main'
+            }
+        }
+        stage("build Image") { 
+            steps {
+
+                sh "docker build -t weather-react:latest ."
+            }
+        }
+        stage("Container Create") {
+            steps {
+                sh "docker run -dit -p 3000:80 --name weather-react:latest
+            }
+        }
+    }
+}
