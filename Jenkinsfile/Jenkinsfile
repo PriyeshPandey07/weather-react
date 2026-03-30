@@ -17,7 +17,7 @@ pipeline {
         }
         stage("Container Create") {
             steps {
-                sh "docker run -dit -p 3000:80 --name weather-react:latest
+                sh "docker run -dit -p 3000:80 --name weather-react:latest"
             }
         }
     }
